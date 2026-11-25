@@ -4,6 +4,10 @@ A GTA-style 3D browser game where you play an AWS data center technician walking
 *your own* AWS account. Rooms, racks and doors are generated from what's actually deployed.
 Everything is read-only.
 
+[![Watch the trailer](docs/trailer.jpg)](https://github.com/ljacobsson/aws-fps/releases/download/v0.1.0/gtas.mp4)
+
+▶ [Watch the trailer](https://github.com/ljacobsson/aws-fps/releases/download/v0.1.0/gtas.mp4) (1 min)
+
 ```bash
 npm install
 npm start            # → http://localhost:8086
