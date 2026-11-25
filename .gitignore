@@ -3,13 +3,6 @@ node_modules/
 *.log
 b.txt
 
-# Trailer: keep the sources, not the renders, footage or tool caches
-trailer/renders/
-trailer/assets/footage/
-trailer/.hyperframes/
-trailer/.thumbnails/
-trailer/.waveform-cache/
-trailer/.media/
-trailer-capture/clips/
-trailer-capture/frames/
-trailer-capture/explore/
+# Trailer (HyperFrames project and footage capture), kept locally only
+trailer/
+trailer-capture/
