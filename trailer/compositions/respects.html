@@ -1,0 +1,68 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Anton";
+      src: url("assets/fonts/anton.woff2") format("woff2");
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "Rajdhani";
+      src: url("assets/fonts/rajdhani-700.woff2") format("woff2");
+      font-weight: 700;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    /* The game's .floater ("RESPECT +", #9cff6a) and #passed (MISSION PASSED), scaled ~2x. */
+    #rs-float {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 440px;
+      text-align: center;
+      font: 400 100px/1 "Anton", sans-serif;
+      color: #9cff6a;
+      text-shadow: 5px 5px 0 #000;
+    }
+    #rs-passed {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+    }
+    #rs-title {
+      font: 400 156px/1 "Anton", sans-serif;
+      color: #ffcc33;
+      letter-spacing: 3px;
+      text-shadow:
+        7px 7px 0 #000,
+        -3px -3px 0 #000;
+    }
+    #rs-sub {
+      margin-top: 12px;
+      font: 700 50px/1.2 "Rajdhani", sans-serif;
+      color: #fff;
+      text-shadow: 4px 4px 0 #000;
+    }
+  </style>
+  <div id="root" data-composition-id="respects" data-width="1920" data-height="1080">
+    <div id="rs-float" class="clip" data-start="52.53" data-duration="1.8" data-track-index="1"><div id="rs-float-in">RESPECT +</div></div>
+    <div id="rs-passed" class="clip" data-start="53.13" data-duration="3.3" data-track-index="2">
+      <div id="rs-in">
+        <div id="rs-title">MISSION PASSED</div>
+        <div id="rs-sub">Respect +</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // floatup: rises 80px (x2) and fades over 1.8 s, ease-out.
+    tl.fromTo("#rs-float-in", { y: 0, opacity: 1 }, { y: -160, opacity: 0, duration: 1.75, ease: "power2.out" }, 52.53);
+    // passed: scale 1.4 → 1 and fade in over 10%, hold, fade out over the last 20%.
+    tl.fromTo("#rs-in", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 53.13);
+    tl.fromTo("#rs-in", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power3.in", immediateRender: false }, 56.0);
+    window.__timelines["respects"] = tl;
+  </script>
+</template>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grand Theft Auto Scaling — Data Center Technician Edition</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23232f3e%22/%3E%3Cpath d=%22M18 62 Q50 82 82 60%22 stroke=%22%23ff9900%22 stroke-width=%228%22 fill=%22none%22 stroke-linecap=%22round%22/%3E%3Ctext x=%2250%22 y=%2252%22 font-size=%2236%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3Eaws%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/style.css">
+  <script type="importmap">
+    { "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }
+  </script>
+</head>
+<body>
+  <div id="game"></div>
+
+  <!-- Title screen -->
+  <section id="start">
+    <div class="start-bg"></div>
+    <div class="start-card">
+      <img id="title-logo" alt="">
+      <h1><span>Grand Theft</span> Auto Scaling</h1>
+      <h2>Data Center Technician Edition</h2>
+      <form id="start-form">
+        <label>Badge (AWS profile)
+          <select id="profile"></select>
+        </label>
+        <label>Region
+          <select id="region"></select>
+        </label>
+        <button id="clock-in" type="submit">Clock in</button>
+        <div id="start-status"></div>
+      </form>
+      <p class="fine">Read-only. Only free control-plane calls (Describe/List/Get) — plus a capped handful of
+        CloudWatch <code>GetMetricStatistics</code> for the surveillance room. Uses your local SSO session.</p>
+      <p id="title-tip" class="tip"></p>
+    </div>
+  </section>
+
+  <!-- Loading screen -->
+  <section id="loading" class="hidden">
+    <div class="load-title">SCANNING YOUR DATA CENTER</div>
+    <div class="load-bar"><div id="loading-bar"></div></div>
+    <div id="loading-log"></div>
+    <div id="loading-tip" class="tip"></div>
+  </section>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <canvas id="minimap" width="240" height="240"></canvas>
+    <div id="topright">
+      <div id="clock"></div>
+      <div id="money"></div>
+      <div id="stars"></div>
+      <div id="whoami"></div>
+    </div>
+    <div id="notify"></div>
+    <div id="mission"></div>
+    <div id="banner"></div>
+    <div id="passed"></div>
+    <div id="prompt"></div>
+    <div id="subtitle"></div>
+    <div id="crosshair"></div>
+    <div id="mode"></div>
+    <div id="keys"><kbd>WASD</kbd> move <kbd>Shift</kbd> sprint <kbd>E</kbd> inspect <kbd>V</kbd> view <kbd>L</kbd> lobby <kbd>H</kbd> help</div>
+    <div id="click-to-play">Click to clock back in<small>(mouse look needs pointer lock)</small></div>
+
+    <aside id="inspect">
+      <header>
+        <img id="inspect-icon" alt="">
+        <div><div id="inspect-kind"></div><div id="inspect-name"></div></div>
+        <button id="inspect-close" title="Close (E / Esc)">✕</button>
+      </header>
+      <div id="inspect-meta"></div>
+      <div id="inspect-image"></div>
+      <div id="inspect-actions"></div>
+      <div id="inspect-body"></div>
+      <footer id="inspect-foot"></footer>
+    </aside>
+
+    <div id="help">
+      <h3>Technician handbook</h3>
+      <table>
+        <tr><td><kbd>W A S D</kbd></td><td>Walk (arrow keys work too)</td></tr>
+        <tr><td><kbd>Mouse</kbd></td><td>Look around (click the game first)</td></tr>
+        <tr><td><kbd>Shift</kbd></td><td>Sprint — it's an incident</td></tr>
+        <tr><td><kbd>E</kbd></td><td>Inspect / talk / read</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Toggle first person ↔ bird's eye (mouse wheel zooms)</td></tr>
+        <tr><td><kbd>F</kbd></td><td>Pay respects (graveyard)</td></tr>
+        <tr><td><kbd>L</kbd></td><td>Teleport to the lobby</td></tr>
+        <tr><td><kbd>X</kbd></td><td>Try to unplug something (you can't)</td></tr>
+        <tr><td><kbd>N</kbd></td><td>Mute the 60&nbsp;Hz hum</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Release the mouse / close panels</td></tr>
+      </table>
+      <p>Walk into an open door to go through it. Every door is a portal: services, the VPC air tunnel,
+        CloudFormation stacks (one door each) and the graveyard.</p>
+      <button id="help-close">Got it</button>
+    </div>
+
+    <div id="fade"><div id="fade-text"></div></div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
